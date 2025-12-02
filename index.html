@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Celebration</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #ffe6f0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  header, footer {
+    text-align: center;
+    padding: 20px;
+    background: #ffccd5;
+    color: #800000;
+    font-size: 1.5em;
+    width: 100%;
+  }
+
+  .heart-container {
+    width: 280px;
+    max-width: 90%;
+    margin: 30px auto;
+    position: relative;
+  }
+
+  .slideshow-container {
+    max-width: 900px;
+    width: 95%;
+    height: 480px;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+    margin-bottom: 40px;
+    box-shadow: 0 0 15px #ff99c8, 0 0 30px #ff66a3, 0 0 45px #ff4d6d;
+    background: #00000020;
+  }
+
+  .slides {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .floating-heart {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #ff4d6d;
+    transform: rotate(45deg);
+    border-radius: 3px;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+  .floating-heart::before,
+  .floating-heart::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #ff4d6d;
+    border-radius: 50%;
+  }
+  .floating-heart::before { top: -6px; left: 0; }
+  .floating-heart::after { top: 0; left: -6px; }
+
+  .sparkle {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: radial-gradient(circle, #fff 0%, #ffd1dc 70%, transparent 100%);
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 50%;
+    z-index: 10;
+    animation: sparkleAnim 2s linear forwards;
+  }
+  @keyframes sparkleAnim {
+    0% { opacity: 1; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0); }
+  }
+
+  .click-popup {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3366;
+    text-shadow: 0 0 8px #ff99cc, 0 0 15px #ff66a3;
+    pointer-events: none;
+    opacity: 1;
+    transform: translateY(0);
+    animation: popupAnim 1.5s forwards;
+    z-index: 20;
+  }
+  @keyframes popupAnim {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-80px); }
+  }
+
+  #musicControl {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff99cc;
+  }
+
+  @media screen and (max-width: 500px) {
+    .heart-container { width: 180px; }
+    .slideshow-container { height: 260px; }
+    header, footer { font-size: 1.2em; padding: 15px; }
+    #musicControl { font-size: 16px; padding: 8px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>💖 Surprise💖</header>
+
+<div class="heart-container">
+  <svg viewBox="0 0 512 512" width="100%" height="auto">
+    <defs>
+      <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ff4d6d"/>
+        <stop offset="100%" stop-color="#ff99c8"/>
+      </linearGradient>
+      <style>
+        .heart-shape { transform-origin: center; animation: heartbeat 3s ease-in-out infinite; filter: drop-shadow(0 0 5px #ff4d6d);}
+        @keyframes heartbeat { 0%,100%{transform:scale(1);} 50%{transform:scale(1.05);} }
+        .heart-text { font-family: 'Segoe Script', cursive, Arial; font-weight:bold; fill:#ffffff; stroke:#800000; stroke-width:2px; filter: drop-shadow(0 0 6px #ff9ce6);}
+      </style>
+    </defs>
+
+    <path class="heart-shape" d="M256 464s-13.1-10.4-33.6-26.9C99 336 48 272 48 192 48 121.3 103.3 64 176 64c36 0 72 18 80 48 8-30 44-48 80-48 72.7 0 128 57.3 128 128 0 80-51 144-174.4 245.1C269.1 453.6 256 464 256 464z" fill="url(#heartGradient)" />
+    <text class="heart-text" x="50%" y="40%" text-anchor="middle" font-size="40">🎉 Happy Birthday! 🎉</text>
+    <text class="heart-text" x="50%" y="60%" text-anchor="middle" font-size="32">❤️ 1st Anniversary ❤️</text>
+  </svg>
+</div>
+
+<button id="musicControl">Play Music 🎵</button>
+
+<div class="slideshow-container">
+  <!-- 27 images -->
+  <img class="slides" src="img1.jpg">
+  <img class="slides" src="img2.jpg">
+  <img class="slides" src="img3.jpg">
+  <img class="slides" src="img4.jpg">
+  <img class="slides" src="img5.jpg">
+  <img class="slides" src="img6.jpg">
+  <img class="slides" src="img7.jpg">
+  <img class="slides" src="img8.jpg">
+  <img class="slides" src="img9.jpg">
+  <img class="slides" src="img10.jpg">
+  <img class="slides" src="img11.jpg">
+  <img class="slides" src="img12.jpg">
+  <img class="slides" src="img13.jpg">
+  <img class="slides" src="img14.jpg">
+  <img class="slides" src="img15.jpg">
+  <img class="slides" src="img16.jpg">
+  <img class="slides" src="img17.jpg">
+  <img class="slides" src="img18.jpg">
+  <img class="slides" src="img19.jpg">
+  <img class="slides" src="img20.jpg">
+  <img class="slides" src="img21.jpg">
+  <img class="slides" src="img22.jpg">
+  <img class="slides" src="img23.jpg">
+  <img class="slides" src="img24.jpg">
+  <img class="slides" src="img25.jpg">
+  <img class="slides" src="img26.jpg">
+  <img class="slides" src="img27.jpg">
+</div>
+
+<footer>Forever ever and ever ❤️</footer>
+
+<audio id="bgMusic" loop>
+  <source src="romantic_music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Slideshow
+  let slideIndex=0;
+  const slides=document.getElementsByClassName("slides");
+  function showSlides(){
+    for(let i=0;i<slides.length;i++) slides[i].style.opacity=0;
+    slideIndex++;
+    if(slideIndex>slides.length) slideIndex=1;
+    slides[slideIndex-1].style.opacity=1;
+    setTimeout(showSlides,3000);
+  }
+  showSlides();
+
+  // Floating hearts
+  const hearts=[];
+  for(let i=0;i<30;i++){
+    const h=document.createElement('div');
+    h.className='floating-heart';
+    h.style.left=Math.random()*window.innerWidth+'px';
+    h.style.top=(window.innerHeight+Math.random()*100)+'px';
+    h.size=8+Math.random()*12;
+    h.speed=0.5+Math.random()*1.5;
+    h.style.width=h.style.height=h.size+'px';
+    document.body.appendChild(h);
+    hearts.push(h);
+  }
+  function animateHearts(){
+    hearts.forEach(h=>{
+      h.style.top=(parseFloat(h.style.top)-h.speed)+'px';
+      if(parseFloat(h.style.top)<-20){
+        h.style.top=(window.innerHeight+20)+'px';
+        h.style.left=Math.random()*window.innerWidth+'px';
+      }
+    });
+    requestAnimationFrame(animateHearts);
+  }
+  animateHearts();
+
+  // Sparkles on mousemove
+  document.addEventListener('mousemove', e=>{
+    const s=document.createElement('div');
+    s.className='sparkle';
+    s.style.left=e.clientX+(Math.random()*20-10)+'px';
+    s.style.top=e.clientY+(Math.random()*20-10)+'px';
+    const size=4+Math.random()*6;
+    s.style.width=s.style.height=size+'px';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),2000);
+  });
+
+  // Click popup
+  document.addEventListener('click', e=>{
+    const p=document.createElement('div');
+    p.className='click-popup';
+    p.style.left=e.clientX+'px';
+    p.style.top=e.clientY+'px';
+    p.innerText='Love You ❤️';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),1500);
+  });
+
+  // Music control button
+  const bgMusic=document.getElementById('bgMusic');
+  const musicControl=document.getElementById('musicControl');
+
+  musicControl.addEventListener('click', ()=>{
+    if(bgMusic.paused){
+      bgMusic.play().then(()=>{musicControl.innerText="Pause Music ⏸️";})
+        .catch(()=>alert("Click anywhere to allow music!"));
+    } else {
+      bgMusic.pause();
+      musicControl.innerText="Play Music 🎵";
+    }
+  });
+
+  // Optional: play music on first click anywhere
+  document.body.addEventListener('click', function initMusic(){
+    if(bgMusic.paused){
+      bgMusic.play().then(()=>musicControl.innerText="Pause Music ⏸️").catch(()=>{});
+    }
+  }, { once: true });
+</script>
+
+</body>
+</html>
